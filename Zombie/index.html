@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Zombie Game - Kill all the zombies!</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
+    <body>
+
+        <div id="para">
+            <p id="bottomright">Total Kills: 0</p>
+        </div>
+
+        <input type="image" id="imgclick" onclick="score()" src="images/zombie.png" ></input>
+        <input type="image" id="exitclk" onclick="stop()" src="images/end.png"></input>
+        <audio id="death">
+            <source src="src/deathsound.mp3" type="audio/mp3">
+        </audio>
+
+        <script>
+
+            let zombiekill = 0;
+
+            function score(){
+                document.getElementById('death').play();
+                zombiekill += 1
+                document.getElementById("bottomright").innerHTML = 'Total Kills: ' + zombiekill
+                document.getElementById("imgclick").src = "images/poof.gif"
+            }
+
+            function Zombierandom(){
+                document.getElementById("imgclick").src = "images/zombie.png"
+                let width = window.innerWidth
+                || document.documentElement.clientWidth
+                || document.body.clientWidth;
+            
+                let height = window.innerHeight
+                || document.documentElement.clientHeight
+                || document.body.clientHeight;
+            
+                let limit1 = width - 70
+                let limit2 = height - 70
+                
+                let myTop = Math.floor(Math.random()*limit2)
+                let myLeft = Math.floor(Math.random()*limit1)
+                
+                if (myLeft < limit1){
+                    if (myTop < limit2){
+                        document.getElementById('imgclick').style.position="absolute"
+                        document.getElementById('imgclick').style.top = myTop + 'px' 
+                        document.getElementById('imgclick').style.left = myLeft + 'px'
+                    }
+                    else{
+                        return
+                    }
+            } 
+                else{
+                    return
+                }
+            }
+
+            function stop(){
+                document.getElementById("bottomright").innerHTML = "Total Kills: 0"
+                clearInterval(zombie)
+                setTimeout(Zombierandom, 0)
+            }
+    
+            let zombie = setInterval(Zombierandom, 2000)
+        </script>
+    </body>
+</html>
