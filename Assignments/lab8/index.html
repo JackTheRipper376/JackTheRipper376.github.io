@@ -1,0 +1,45 @@
+<body>
+    <script>
+            function letters(n){
+                let alpha = ['A','B','C','D','E','F','G','H','I','J','K','L','M',
+                'N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+                if (n > 0) {
+                    if (n <= 26){
+                        for (let num = 0; num < n; num++) {
+                            letter = alpha[num]
+                            let btn = document.createElement("button");
+                            document.body.appendChild(btn)
+                            btn.innerHTML = letter
+                            btn.onclick = function(){console.log("Button", btn.innerHTML, "was clicked")}
+                        }
+                    }     
+                }
+            }
+            
+        function recipe (title, servings, ingredients){
+            this.title = title;
+            this.servings = servings;
+            this.ingredients = ingredients;
+        }          
+        
+        let recipe1 = new recipe("Ghirmeh Sabzi", 2, ['cinnamon', 'lettuce', 'onion']);
+
+        let dish = document.createElement("h3")
+        let amount = document.createElement("h4")
+        let component = document.createElement("p")
+        document.body.appendChild(dish)
+        document.body.appendChild(amount)
+        document.body.appendChild(component)
+        dish.innerHTML = 'Title: ' + recipe1.title
+        amount.innerHTML = 'Servings: ' + recipe1.servings
+        component.innerHTML = 'Ingredients: '
+        for (let i=0; i<recipe1.ingredients.length; i++){
+            document.write(recipe1.ingredients[i]);
+            document.write('</br>')
+            document.write('</br>')
+        }
+        
+            letters(10)
+        </script>
+
+</body>
