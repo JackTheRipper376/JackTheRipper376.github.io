@@ -1,0 +1,64 @@
+<html lang='en'>
+<head>
+    <style>
+        button {
+            height:5em;
+            width:10em;
+        }
+    </style>
+</head>
+<body>
+    <p>How many buttons to create?</p>
+    <input type="text" id="number" value="">
+    <input type="button" id="create" value="Go!">
+    <p> <br> </p>
+    <script>
+        function button(){
+            let n = document.getElementById("number").value;
+            if (n >= 5){
+                if (n <= 100){
+                    for (let num=0; num<n; num++){
+                    let b = document.createElement("button")
+                    document.body.appendChild(b)
+                    let num1 = Math.round(255*Math.random())
+                    let num2 = Math.round(255*Math.random())
+                    let num3 = Math.round(255*Math.random())
+                    b.style = "background-color:rgb(" + num1 + "," + num2 + "," + num3 + ")"
+                }
+                setInterval(position, 2000)
+                }
+                else{
+                    window.alert("Invalid input: must be number between 5 and 100")
+                }
+                }
+            else{
+                window.alert("Invalid input: must be number between 5 and 100")
+            }
+            }
+
+        function position(){
+            let width = window.innerWidth
+            || document.documentElement.clientWidth
+            || document.body.clientWidth;
+            
+            let height = window.innerHeight
+            || document.documentElement.clientHeight
+            || document.body.clientHeight;
+
+
+            let random = document.getElementsByTagName("button")
+            let total = document.getElementById("number").value 
+            for (let i=0;i<total; i++){
+                let limit1 = Math.round(width*.8*Math.random())
+                let limit2 = Math.round(height*.8*Math.random())
+                random[i].style.position = "absolute"
+                random[i].style.top = limit2 + "px"
+                random[i].style.left = limit1 + "px"
+            }
+
+        }
+        document.getElementById("create").onclick = button;
+
+    </script>
+</body>
+</html>

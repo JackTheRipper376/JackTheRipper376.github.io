@@ -1,0 +1,89 @@
+<html lang='en'>
+<head>
+
+</head>
+<body>
+    <p>How many buttons to create?</p>
+    <input type="text" id="number" value="">
+    <input type="button" id="create" value="Go!">
+    <p> <br> </p>
+    <script>
+        let array = []
+        function button(color, height, width, top, left, order){
+            this.btn = document.createElement("button");
+            this.btn.style.backgroundColor = color;
+            this.btn.style.height = height;
+            this.btn.style.width = width;
+            this.btn.style.position = "absolute";
+            this.location = function (top, left){
+                this.btn.style.top = top;
+                this.btn.style.left = left;
+            }
+            this.location(top, left);
+            this.order = order;
+            document.body.appendChild(this.btn)
+        }
+
+        function create(){
+            let n = document.getElementById("number").value;
+            let ms = n * 1000
+            if (n >= 5){
+                if (n <= 100){
+                    let pix = 0
+                    for (let i=0; i<n; i++){
+                        let num1 = Math.round(255*Math.random())
+                        let num2 = Math.round(255*Math.random())
+                        let num3 = Math.round(255*Math.random())
+                        let rgb = "rgb(" + num1 + ',' + num2 + ',' + num3 + ")"
+                        let b = new button(rgb, "5em", "10em", "100px", pix, i);
+                        array.push(b)
+                        pix += 125;
+                    }
+                    setTimeout(position, ms)
+                }
+                else{
+                    window.alert("Invalid input: must be number between 5 and 100")
+                    }
+                }
+            else{
+                window.alert("Invalid input: must be number between 5 and 100")
+            }
+            }
+
+        function position(){
+            let width = window.innerWidth
+            || document.documentElement.clientWidth
+            || document.body.clientWidth;
+            
+            let height = window.innerHeight
+            || document.documentElement.clientHeight
+            || document.body.clientHeight;
+
+            let total = document.getElementById("number").value
+            let milli = total * 1000 
+            for (let i=0;i<total; i++){
+                setTimeout(function(){ array[i].location(
+                Math.floor(width*.75*Math.random()) + "px",
+                Math.floor(height*.75*Math.random()) + "px");
+                milli})
+            }
+
+        }
+
+        function game(){
+            let buttons = document.getElementsByTagName("button")
+            for (let i = 0; i<num; i++){
+                if (buttons.order == array[i]){
+                    continue
+                }
+                else{
+                    document.write("Wrong order")
+                    return
+                }
+            }
+        }
+        document.getElementById("create").onclick = create;
+        buttons.onclick = game
+    </script>
+</body>
+</html>
